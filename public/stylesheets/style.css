@@ -1,25 +1,77 @@
-/*body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body {
+  background-color: #777;
+  font-family: 'Roboto', sans-serif;
+}
+
+hr {
+  width: 65rem;
+  border-top: 1px solid #000;
+}
+
+strong {
+  color: #f0f8ff;
 }
 
 a {
-  color: #00B7FF;
-}*/
+  color: #1c96ff;
+}
+
+.navbar-inverse {
+    border-radius: 0px;
+    background-color: hsla(0, 0%, 0%, 0.9);
+}
+
+.navbar-brand {
+  font-family: 'Audiowide', cursive;
+  font-size: 40px;
+  padding-left: 50px;
+}
+
+.thumbnail h3 {
+  color: #c1f0f8;
+}
+
+.thumbnail {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
 .thumbnail img {
   max-height: 350px;
 }
 
 .thumbnail .description {
-  color: #7f7f7f;
+  color: #e2f2f5;
+}
+
+.list-group-item {
+  background-color: hsla(0, 0%, 0%, 0.9);
+  color: #fff;
+}
+
+.panel-footer strong{
+  color: #000;
 }
 
 .price {
+  color: #f0f8ff;
   font-weight: bold;
-  font-style: 16px;
+  font-size: 16px;
 }
 
 #wishlist {
   padding-left: 5px;
   float: right;
+}
+
+#mainpage {
+  background: url(https://s-media-cache-ak0.pinimg.com/originals/e3/4a/9e/e34a9ec63e473e57c22da8a1b120b68f.jpg);
+  background-repeat: repeat;
+  background-size: 15%;
+}
+
+#emptycart, #emptylist {
+  padding: 30px;
+  font-size: 50px;
+  color: #c1f0f8;
+  background-color: hsla(0, 0%, 0%, 0.9);
 }
