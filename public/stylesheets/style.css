@@ -18,3 +18,8 @@ a {
   font-weight: bold;
   font-style: 16px;
 }
+
+#wishlist {
+  padding-left: 5px;
+  float: right;
+}

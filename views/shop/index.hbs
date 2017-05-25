@@ -16,8 +16,10 @@
           <h3>{{ this.title }}</h3>
           <p class="description">{{ this.description }}</p>
           <div class="clearfix">
-            <div class="price pull-left">${{ this.price }}</div>
-            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
+            <div class="price">${{ this.price }}</div>
+            <div class="clearfix" id="wishlist"><a href="/add-to-wish/{{this._id}}" class="btn btn-info pull-right" role="button"><i class="fa fa-magic" aria-hidden="true"></i>
+ Add to Wishlist</a></div>
+            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</a>
           </div>
         </div>
       </div>

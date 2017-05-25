@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Cart = require('../models/cart');
+var Wish = require('../models/wish');
 
 var Product = require('../models/product');
 var Order = require('../models/order');
@@ -33,6 +34,21 @@ router.get('/add-to-cart/:id', function(req, res, next) {
   });
 });
 
+router.get('/add-to-wish/:id', function(req, res, next) {
+  var productId = req.params.id;
+  var wish = new Wish(req.session.wish ? req.session.wish : {});
+
+  Product.findById(productId, function(err, product) {
+    if (err) {
+      return res.redirect('/');
+    }
+    wish.add(product, product.id);
+    req.session.wish = wish;
+    console.log(req.session.wish);
+    res.redirect('/');
+  });
+});
+
 router.get('/remove/:id', function(req, res, next) {
   var productId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -51,12 +67,38 @@ router.get('/remove-all/:id', function(req, res, next) {
   res.redirect('/shopping-cart');
 });
 
+router.get('/remove-wish/:id', function(req, res, next) {
+  var productId = req.params.id;
+  var wish = new Wish(req.session.wish ? req.session.wish : {});
+
+  wish.removeOneWish(productId);
+  req.session.wish = wish;
+  res.redirect('/wishlist');
+});
+
+router.get('/remove-wish-all/:id', function(req, res, next) {
+  var productId = req.params.id;
+  var wish = new Wish(req.session.wish ? req.session.wish : {});
+
+  wish.removeWishAll(productId);
+  req.session.wish = wish;
+  res.redirect('/wishlist');
+});
+
 router.get('/shopping-cart', function(req, res, next) {
   if (!req.session.cart) {
     return res.render('shop/shopping-cart', {products: null});
   }
   var cart = new Cart(req.session.cart);
   res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+});
+
+router.get('/wishlist', function(req, res, next) {
+  if (!req.session.wish) {
+    return res.render('shop/wishlist', {products: null});
+  }
+  var wish = new Wish(req.session.wish);
+  res.render('shop/wishlist', {products: wish.generateArray(), totalPrice: wish.totalPrice});
 });
 
 router.get('/checkout', isLoggedIn, function(req, res, next) {
